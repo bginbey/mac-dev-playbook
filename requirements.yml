@@ -1,4 +1,6 @@
 ---
+- name: elliotweiser.osx-command-line-tools
+- name: vaulttec.zsh
 - name: geerlingguy.dotfiles
 - name: geerlingguy.homebrew
 - name: geerlingguy.mas
