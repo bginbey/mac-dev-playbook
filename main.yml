@@ -10,16 +10,6 @@
       with_fileglob:
         - "{{ playbook_dir }}/config.yml"
       tags: ['always']
-
-  roles:
-    - role: geerlingguy.homebrew
-      tags: ['homebrew']
-    - role: vaulttec.zsh
-    - role: geerlingguy.dotfiles
-      when: configure_dotfiles
-      tags: ['dotfiles']
-
-  tasks:
     - include_tasks: tasks/ansible-setup.yml
 
     - include_tasks: tasks/osx.yml
@@ -29,5 +19,33 @@
     - include_tasks: tasks/python-setup.yml
       tags: ['python']
 
+  roles:
+    - role: geerlingguy.homebrew
+      tags: ['homebrew']
+
+    - role: gantsign.antigen
+      antigen_download_dir: "{{ x_ansible_download_dir | default(ansible_env.HOME + '/.ansible/tmp/downloads') }}"
+      users:
+        - username: beauginbey
+          antigen_libraries:
+            - name: oh-my-zsh
+              antigen_theme:
+                name: robbyrussell
+                antigen_bundles:
+                  # Bundles from the default repo (robbyrussell's oh-my-zsh).
+                  - name: git
+                  - name: heroku
+                  - name: pip
+                  - name: lein
+                  - name: command-not-found
+                    # Syntax highlighting bundle.
+                  - name: zsh-syntax-highlighting
+                    url: zsh-users/zsh-syntax-highlighting
+
+    - role: ansible-role-dotfiles
+      when: configure_dotfiles
+      tags: ['dotfiles']
+
+  tasks:
     - include_tasks: tasks/neovim-setup.yml
       tags: ['neovim']

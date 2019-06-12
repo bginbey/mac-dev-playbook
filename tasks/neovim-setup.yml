@@ -2,7 +2,7 @@
 - name: Ensure Neovim autoload directory exists
   file:
     path: "{{ neovim_autoload_directory }}"
-    state: file
+    state: directory
 
 - name: Ensure the default init.vim file is removed
   file:
@@ -29,7 +29,7 @@
 - name: Ensure YouCompleteMe directory exists
   file:
     path: "{{ neovim_plugin_directory }}YouCompleteMe"
-    state: exists
+    state: directory
 
 - name: Compile YouCompleteMe
   shell: ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer

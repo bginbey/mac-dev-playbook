@@ -1,5 +1,5 @@
 ---
 - name: elliotweiser.osx-command-line-tools
-- name: vaulttec.zsh
-- name: geerlingguy.dotfiles
+- name: gantsign.antigen
+- src: https://github.com/bginbey/ansible-role-dotfiles
 - name: geerlingguy.homebrew

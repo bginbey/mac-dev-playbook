@@ -1,5 +1,6 @@
 ---
 downloads: ~/.ansible-downloads/
+antigen_download_directory: ~/.ansible-downloads
 
 configure_dotfiles: yes
 configure_sudoers: yes
