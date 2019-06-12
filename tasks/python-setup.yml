@@ -1,0 +1,15 @@
+---
+- name: "Install Python {{ python2_version }}"
+  shell: "pyenv install {{ python2_version }}"
+
+- name: "Install Python {{ python3_version }}"
+  shell: "pyenv install {{ python3_version }}"
+
+- name: "Set global Python version to {{ python3_version }}"
+  shell: "pyenv global {{ python3_version }} --enable-framework"
+
+- name: Upgrade pynvim to work with YouCompleteMe
+  shell: pip3 install --user --upgrade pynvim
+
+- name: Rehash pyenv
+  shell: pyenv rehash
