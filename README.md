@@ -28,19 +28,20 @@ sudo installer -pkg \
 brew install pyenv pipenv
 pyenv init
 # Add eval "$(pyenv init -)" to .bash_profile
+export PYTHON_CONFIGURE_OPTS="--enable-framework" 
 pyenv install 2.7.16
 pyenv install 3.7.3
 pyenv global 3.7.3
-pip3 install --user --upgrade pynvim
 pyenv rehash
+pip3 install --user --upgrade pynvim
 
 ```
 #### Ansible
 1. Install ansible with `brew install ansible`
 3. Clone this repository to your local drive.
 4. Run `$ ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
-5. Run `ansible-playbook main.yml -i inventory --check -K` inside this directory to do a test run. Enter your account password when prompted.
-6. Run `ansible-playbook main.yml -i inventory -K` inside this directory to run the playbook for real. Enter your account password when prompted.
+5. Run `ansible-playbook main.yml -i inventory --check -K -vvvv` inside this directory to do a test run. Enter your account password when prompted. Note, sequentially dependent tasks like creating a folder that the next task needs will appear to fail in --check mode because no folder is actually created.
+6. Run `ansible-playbook main.yml -i inventory -K -vvvv` inside this directory to run the playbook for real. Enter your account password when prompted.
 
 > Note: If some Homebrew commands fail, you might need to agree to Xcode's license or fix some other Brew issue. Run `brew doctor` to see if this is the case.
 
@@ -68,12 +69,16 @@ Any variable can be overridden in `config.yml`; see the supporting roles' docume
 Applications (installed with Homebrew Cask):
 
   - [Docker](https://www.docker.com/)
+  - [.NET SDK](https://dotnet.microsoft.com)
   - [Firefox](https://www.mozilla.org/en-US/firefox/new/)
   - [Google Chrome](https://www.google.com/chrome/)
+  - [Google Drive File Stream](https://www.google.com/drive/download/)
   - [Hyper](https://hyper.is)
-  - [Visual Studio](https://visualstudio.microsoft.com)
+  - [KeypassX](https://www.keepassx.org)
+  - [Private Internet Access](https://www.privateinternetaccess.com/)
+  - [ShiftIt](https://github.com/fikovnik/ShiftIt)
   - [Visual Studio Code](https://code.visualstudio.com)
-  - [.NET SDK](https://dotnet.microsoft.com)
+  - [Visual Studio](https://visualstudio.microsoft.com)
 
 Packages (installed with Homebrew):
 

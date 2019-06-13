@@ -43,6 +43,7 @@ homebrew_cask_apps:
   - google-drive-file-stream
   - hyper
   - keepassx
+  - private-internet-access
   - shiftit
   - visual-studio-code
   - visual-studio
