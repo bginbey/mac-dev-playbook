@@ -6,10 +6,8 @@ This playbook installs and configures most of the software I use on my Mac for w
 ## Installation:
 #### Command Line Tools
 1. Download and extract the Apple Command Line Tools pkg from [here](https://developer.apple.com/download/more/).
-2. Run the following two commands to install the package and then the headers
+2. Double click the pkg installer, then run the following commands to install the package and then the headers
 ```bash
-sudo installer -pkg \
-  <path-to-command-line-tools>/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
 sudo installer -pkg \
   /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
 ```
