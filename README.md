@@ -21,6 +21,7 @@ sudo installer -pkg \
 1. Install pyenv and pipenv with brew
 2. Add pyenv init to .bash_profile
 3. Run `export PYTHON_CONFIGURE_OPTS="--enable-framework"` to ensure python compiles correctly for use with cmake
+4. Install dependencies with `brew install readline xz`
 4. Install python 2 and 3 via pyenv
 5. Set python version to 3.7.3
 6. Upgrade pynvim (for use with YouCompleteMe vim plugin)
@@ -28,7 +29,8 @@ sudo installer -pkg \
 brew install pyenv pipenv
 pyenv init
 # Add eval "$(pyenv init -)" to .bash_profile
-export PYTHON_CONFIGURE_OPTS="--enable-framework" 
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
+brew install readline xz
 pyenv install 2.7.16
 pyenv install 3.7.3
 pyenv global 3.7.3
