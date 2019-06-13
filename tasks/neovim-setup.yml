@@ -6,13 +6,13 @@
 
 - name: Ensure the default init.vim file is removed
   file:
-    path: "{{ neovim_autoload_directory }}/init.vim"
+    path: "{{ neovim_autoload_directory }}/{{ neovim_init_file }}"
     state: absent
 
 - name: Symlink ~/.neovim-init.vim to Neovim autoload directory
   file:
     src: ~/.neovim-init.vim
-    path: "{{ neovim_autoload_directory }}/init.vim"
+    path: "{{ neovim_autoload_directory }}/{{ neovim_init_file }}"
     state: link
 
 - name: Clone plug.vim from github to Neovim's autoload directory

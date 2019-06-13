@@ -1,7 +1,7 @@
 ---
 ansible_downloads: ~/.ansible-downloads
-neovim_init_file: ~/.config/nvim/init.vim
 neovim_autoload_directory: ~/.config/nvim
+neovim_init_file: init.vim
 neovim_plugin_directory: ~/.local/share/nvim/plugged
 python2_version: 2.7.16
 python3_version: 3.7.3
@@ -24,11 +24,11 @@ homebrew_installed_packages:
   # - ansible # Installed via Pip.
   - git
   - hub
-  - node
-  - pyenv
-  - pipenv
-  - neovim
   - cmake
+  - node
+  #- pyenv
+  #- pipenv
+  - neovim
 
 homebrew_taps:
   - homebrew/core
