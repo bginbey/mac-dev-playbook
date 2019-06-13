@@ -1,0 +1,45 @@
+---
+ansible_downloads: ~/.ansible-downloads/
+neovim_init_file: ~/.config/nvim/init.vim
+neovim_autoload_directory: ~/.local/share/nvim/site/
+neovim_plugin_directory: ~/.local/share/nvim/plugged/
+python2_version: 2.7.16
+python3_version: 3.7.3
+antigen_download_directory: ~/.ansible-downloads
+
+configure_dotfiles: yes
+configure_osx: yes
+
+dotfiles_repo: https://github.com/bginbey/dotfiles.git
+dotfiles_repo_local_destination: "~/dotfiles"
+dotfiles_files:
+  - .zshrc
+  - .gitconfig
+  - .hyper.js
+  - .osx
+  - .neovim-init.vim
+
+homebrew_installed_packages:
+  # - ansible # Installed via Pip.
+  - git
+  - hub
+  - node
+  - pyenv
+  - pipenv
+  - neovim
+
+homebrew_taps:
+  - homebrew/core
+  - homebrew/cask
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - docker
+  - firefox
+  - google-chrome
+  - hyper
+  - visual-studio
+  - visual-studio-code
+  - dotnet-sdk
+
+osx_script: "~/.osx --no-restart"
