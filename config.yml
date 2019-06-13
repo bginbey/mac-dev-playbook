@@ -37,11 +37,14 @@ homebrew_taps:
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - docker
+  - dotnet-sdk
   - firefox
   - google-chrome
+  - google-drive-file-stream
   - hyper
-  - visual-studio
+  - keepassx
+  - shiftit
   - visual-studio-code
-  - dotnet-sdk
+  - visual-studio
 
 osx_script: "~/.osx --no-restart"
