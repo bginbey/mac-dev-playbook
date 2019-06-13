@@ -11,20 +11,22 @@
         - "{{ playbook_dir }}/config.yml"
       tags: ['always']
     - include_tasks: tasks/ansible-setup.yml
+      when: configure_ansible
 
     - include_tasks: tasks/osx.yml
       when: configure_osx
       tags: ['osx']
 
-    - include_tasks: tasks/python-setup.yml
-      tags: ['python']
+# Removed in favor of installing Python before ansible
+#    - include_tasks: tasks/python-setup.yml
+#      tags: ['python']
 
   roles:
     - role: geerlingguy.homebrew
       tags: ['homebrew']
 
     - role: gantsign.antigen
-      antigen_download_dir: "{{ x_ansible_download_dir | default(ansible_env.HOME + '/.ansible/tmp/downloads') }}"
+      antigen_download_dir: "{{ antigen_downloads }}"
       users:
         - username: beauginbey
           antigen_libraries:
@@ -42,9 +44,10 @@
                   - name: zsh-syntax-highlighting
                     url: zsh-users/zsh-syntax-highlighting
 
-    - role: ansible-role-dotfiles
-      when: configure_dotfiles
-      tags: ['dotfiles']
+# TODO: Works once, ensure the role checks before trying to install
+#    - role: ansible-role-dotfiles
+#      when: configure_dotfiles
+#      tags: ['dotfiles']
 
   tasks:
     - include_tasks: tasks/neovim-setup.yml

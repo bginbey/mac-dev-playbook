@@ -6,20 +6,22 @@
 
 - name: Ensure the default init.vim file is removed
   file:
-    path: "{{ neovim_autoload_directory }}init.vim"
+    path: "{{ neovim_autoload_directory }}/init.vim"
     state: absent
 
 - name: Symlink ~/.neovim-init.vim to Neovim autoload directory
   file:
     src: ~/.neovim-init.vim
-    path: "{{ neovim_autoload_directory }}init.vim"
+    path: "{{ neovim_autoload_directory }}/init.vim"
     state: link
 
 - name: Clone plug.vim from github to Neovim's autoload directory
   shell: curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+
+# Didn't work: Run manually for now
 - name: Open Neovim and install vim-plug plugins
-  shell: ~/nvim -c 'PlugInstall|qa!'
+  shell: nvim -c 'PlugInstall|qa!'
 
 - name: Ensure Neovim plugin directory exists
   file:
@@ -28,8 +30,8 @@
 
 - name: Ensure YouCompleteMe directory exists
   file:
-    path: "{{ neovim_plugin_directory }}YouCompleteMe"
+    path: "{{ neovim_plugin_directory }}/YouCompleteMe"
     state: directory
 
 - name: Compile YouCompleteMe
-  shell: ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
+  shell: "{{ neovim_plugin_directory }}/YouCompleteMe/install.py --clang-completer"

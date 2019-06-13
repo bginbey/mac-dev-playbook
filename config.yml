@@ -1,14 +1,15 @@
 ---
-ansible_downloads: ~/.ansible-downloads/
+ansible_downloads: ~/.ansible-downloads
 neovim_init_file: ~/.config/nvim/init.vim
-neovim_autoload_directory: ~/.local/share/nvim/site/
-neovim_plugin_directory: ~/.local/share/nvim/plugged/
+neovim_autoload_directory: ~/.config/nvim
+neovim_plugin_directory: ~/.local/share/nvim/plugged
 python2_version: 2.7.16
 python3_version: 3.7.3
-antigen_download_directory: ~/.ansible-downloads
+antigen_downloads: ~/.ansible-downloads
 
+configure_ansible: yes
 configure_dotfiles: yes
-configure_osx: yes
+configure_osx: no
 
 dotfiles_repo: https://github.com/bginbey/dotfiles.git
 dotfiles_repo_local_destination: "~/dotfiles"
@@ -27,6 +28,7 @@ homebrew_installed_packages:
   - pyenv
   - pipenv
   - neovim
+  - cmake
 
 homebrew_taps:
   - homebrew/core

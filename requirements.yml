@@ -1,5 +1,6 @@
 ---
-- name: elliotweiser.osx-command-line-tools
-- name: gantsign.antigen
+- src: https://github.com/bginbey/ansible_role_antigen
+  version: master
 - src: https://github.com/bginbey/ansible-role-dotfiles
+  version: master
 - name: geerlingguy.homebrew

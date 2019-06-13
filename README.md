@@ -1,25 +1,46 @@
-# Mac Development Ansible Playbook
-
-[![Build Status](https://travis-ci.org/geerlingguy/mac-dev-playbook.svg?branch=master)](https://travis-ci.org/geerlingguy/mac-dev-playbook)
+# Mac Development Playbook
 
 This playbook installs and configures most of the software I use on my Mac for web and software development. Some things in macOS are slightly difficult to automate, so I still have some manual installation steps, but at least it's all documented here.
+#TODO: Consider forking gantsign/ansible_role_antigen
 
-This is a work in progress, and is mostly a means for me to document my current Mac's setup. I'll be evolving this set of playbooks over time.
+## Installation:
+#### Command Line Tools
+1. Download and extract the Apple Command Line Tools pkg from [here](https://developer.apple.com/download/more/).
+2. Run the following two commands to install the package and then the headers
+```bash
+sudo installer -pkg \
+  <path-to-command-line-tools>/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+sudo installer -pkg \
+  /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+```
+#### Homebrew
+```bash
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+#### Python
+1. Install pyenv and pipenv with brew
+2. Add pyenv init to .bash_profile
+3. Run `export PYTHON_CONFIGURE_OPTS="--enable-framework"` to ensure python compiles correctly for use with cmake
+4. Install python 2 and 3 via pyenv
+5. Set python version to 3.7.3
+6. Upgrade pynvim (for use with YouCompleteMe vim plugin)
+```bash
+brew install pyenv pipenv
+pyenv init
+# Add eval "$(pyenv init -)" to .bash_profile
+pyenv install 2.7.16
+pyenv install 3.7.3 # Note didn't do: --enable-framework
+pyenv global 3.7.3
+pip3 install --user --upgrade pynvim
+pyenv rehash
 
-*See also*:
-
-  - [Boxen](https://github.com/boxen)
-  - [Battleschool](http://spencer.gibb.us/blog/2014/02/03/introducing-battleschool)
-  - [osxc](https://github.com/osxc)
-  - [MWGriffin/ansible-playbooks](https://github.com/MWGriffin/ansible-playbooks) (the original inspiration for this project)
-
-## Installation
-
-  1. Ensure Apple's command line tools are installed. On Mojave run `sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /` to launch the installer.
-  2. [Install Ansible](http://docs.ansible.com/intro_installation.html).
-  3. Clone this repository to your local drive.
-  4. Run `$ ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
-  5. Run `ansible-playbook main.yml -i inventory -K` inside this directory. Enter your account password when prompted.
+```
+#### Ansible
+1. Install ansible with `brew install ansible`
+3. Clone this repository to your local drive.
+4. Run `$ ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
+5. Run `ansible-playbook main.yml -i inventory --check -K` inside this directory to do a test run. Enter your account password when prompted.
+6. Run `ansible-playbook main.yml -i inventory -K` inside this directory to run the playbook for real. Enter your account password when prompted.
 
 > Note: If some Homebrew commands fail, you might need to agree to Xcode's license or fix some other Brew issue. Run `brew doctor` to see if this is the case.
 
