@@ -17,14 +17,16 @@ sudo installer -pkg \
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-#### Python via brew (recommended for now due to [common build problems](https://github.com/pyenv/pyenv/wiki/common-build-problems) with pyenv)
+#### Python via brew
+recommended for now due to [common build problems](https://github.com/pyenv/pyenv/wiki/common-build-problems) with pyenv.
 ```bash
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 brew install readline xz python
 pip3 install --user --upgrade pynvim
 ```
 
-#### Python via pyenv ( Not recommended for now due to [common build problems in OS X 10.14 Mojave and other platforms](https://github.com/pyenv/pyenv/wiki/common-build-problems<Paste>))
+#### Python via pyenv
+Not recommended for now due to [common build problems in OS X 10.14 Mojave and other platforms](https://github.com/pyenv/pyenv/wiki/common-build-problems<Paste>).
 1. Install pyenv and pipenv with brew
 2. Add pyenv init to .bash_profile
 3. Run `export PYTHON_CONFIGURE_OPTS="--enable-framework"` to ensure python compiles correctly for use with cmake
@@ -63,7 +65,9 @@ git clone https://github.com/bginbey/mac-dev-playbook.git
 ansible-galaxy install -r requirements.yml
 
 # Run playbook in check mode
-ansible-playbook main.yml -i inventory --check -K -vvvv # Sequentially dependent tasks may appear to fail in --check mode
+# Sequentially dependent tasks may appear to fail
+ansible-playbook main.yml -i inventory --check -K -vvvv 
+
 # Run playbook
 ansible-playbook main.yml -i inventory -K -vvvv
 
@@ -83,7 +87,7 @@ homebrew_installed_packages:
 
 ## Included applications and configuration
 
-### Cask applications
+### Brew casks
   - [Docker](https://www.docker.com/)
   - [.NET SDK](https://dotnet.microsoft.com)
   - [Firefox](https://www.mozilla.org/en-US/firefox/new/)
@@ -96,7 +100,7 @@ homebrew_installed_packages:
   - [Visual Studio Code](https://code.visualstudio.com)
   - [Visual Studio](https://visualstudio.microsoft.com)
 
-### Packages
+### Brew taps
   - git
   - hub
   - cmake
@@ -112,7 +116,7 @@ homebrew_installed_packages:
 - .antigen
 - .neovim-init.vim
 
-### Zsh with Antigen bundles
+### Zsh and Antigen bundles
 - git
 - heroku
 - pip
@@ -120,8 +124,7 @@ homebrew_installed_packages:
 - command-not-found
 
 ## Future development
-
-  - [Figma](https://figma.com)
+- [Figma](https://figma.com)
 
 
 ## Testing the Playbook
