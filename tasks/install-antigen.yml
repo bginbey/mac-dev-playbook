@@ -1,0 +1,13 @@
+---
+- name: Ensure local antigen is not present at target directory
+  file:
+    path: "{{ antigen_destination_directory }}"
+    state: absent
+
+- name: Ensure antigen repo is cloned locally
+  git:
+    repo: 'https://github.com/zsh-users/antigen.git'
+    version: master
+    dest: "{{ antigen_destination_directory }}"
+    force: yes
+    update: yes

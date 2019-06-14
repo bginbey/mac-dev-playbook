@@ -25,30 +25,14 @@
     - role: geerlingguy.homebrew
       tags: ['homebrew']
 
-# TODO: Works once, ensure the role checks before trying to install
+# TODO: Works once, ensure the role cleans up before trying to install
     - role: ansible-role-dotfiles
       when: configure_dotfiles
       tags: ['dotfiles']
 
-    - role: ansible_role_antigen
-      antigen_download_dir: "{{ antigen_downloads }}"
-      users:
-        - username: beauginbey
-          antigen_libraries:
-            - name: oh-my-zsh
-              antigen_theme:
-                name: zhann
-                antigen_bundles:
-                  # Bundles from the default repo (robbyrussell's oh-my-zsh).
-                  - name: git
-                  - name: heroku
-                  - name: pip
-                  - name: lein
-                  - name: command-not-found
-                    # Syntax highlighting bundle.
-                  - name: zsh-syntax-highlighting
-                    url: zsh-users/zsh-syntax-highlighting
-
   tasks:
+    - include_tasks: tasks/install-antigen.yml
+      tags: ['antigen']
+
     - include_tasks: tasks/neovim-setup.yml
       tags: ['neovim']

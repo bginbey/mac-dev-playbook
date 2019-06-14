@@ -3,9 +3,10 @@ ansible_downloads: ~/.ansible-downloads
 neovim_autoload_directory: ~/.config/nvim
 neovim_init_file: init.vim
 neovim_plugin_directory: ~/.local/share/nvim/plugged
-python2_version: 2.7.16
-python3_version: 3.7.3
-antigen_downloads: ~/.ansible-downloads
+# python2_version: 2.7.16
+# python3_version: 3.7.3
+# antigen_downloads: ~/.ansible-downloads
+antigen_destination_directory: ~/.ansible-downloads
 
 configure_ansible: yes
 configure_dotfiles: yes
@@ -18,6 +19,7 @@ dotfiles_files:
   - .gitconfig
   - .hyper.js
   - .osx
+  - .antigenrc
   - .neovim-init.vim
 
 homebrew_installed_packages:
