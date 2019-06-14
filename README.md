@@ -18,7 +18,7 @@ sudo installer -pkg \
 ```
 
 #### Python via brew
-recommended for now due to [common build problems](https://github.com/pyenv/pyenv/wiki/common-build-problems) with pyenv.
+Recommended for now due to [common build problems](https://github.com/pyenv/pyenv/wiki/common-build-problems) with pyenv.
 ```bash
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 brew install readline xz python
