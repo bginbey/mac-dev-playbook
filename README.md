@@ -2,12 +2,8 @@
 
 This playbook installs and configures most of the software I use on my Mac for web and software development. There are still a few manual steps, documented here.
 
-## TODO: Get the dotfiles and antigen modules working together correctly
-- Ensure ~/dotfiles directory is updated even if present or removed and re-added
-- .antigenrc is being created and sourced in .zshrc
-- bundles are not being added to the bundles folder
+## Install before running the Playbook
 
-## Installation:
 #### Command Line Tools
 1. Download and extract the Apple Command Line Tools from [here](https://developer.apple.com/download/more/).
 2. Extract and run the pkg installer then run the following commands to install the package and then the headers
@@ -47,40 +43,47 @@ pyenv install 3.7.3
 pyenv global 3.7.3
 pyenv rehash
 pip3 install --user --upgrade pynvim
-
 ```
+
 #### Ansible
-1. Install ansible with `brew install ansible`
-3. Clone this repository to your local drive.
-4. Run `$ ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
-5. Run `ansible-playbook main.yml -i inventory --check -K -vvvv` inside this directory to do a test run. Enter your account password when prompted. Note, sequentially dependent tasks like creating a folder that the next task needs will appear to fail in --check mode because no folder is actually created.
-6. Run `ansible-playbook main.yml -i inventory -K -vvvv` inside this directory to run the playbook for real. Enter your account password when prompted.
+1. Install ansible via brew
+3. Clone this repository
+4. Install required roles
+5. Run the playbook in check mode
+6. Run the playbook
+7. Running individual tasks by tag
+```bash
+# Install ansible
+brew install ansible
 
-> Note: If some Homebrew commands fail, you might need to agree to Xcode's license or fix some other Brew issue. Run `brew doctor` to see if this is the case.
+# Clone this repository
+git clone https://github.com/bginbey/mac-dev-playbook.git
 
-### Running a specific set of tagged tasks
+# Install roles (from repo directory)
+ansible-galaxy install -r requirements.yml
 
-You can filter which part of the provisioning process to run by specifying a set of tags using `ansible-playbook`'s `--tags` flag. The tags available are `dotfiles`, `homebrew`, `mas`, `extra-packages` and `osx`.
+# Run playbook in check mode
+ansible-playbook main.yml -i inventory --check -K -vvvv # Sequentially dependent tasks may appear to fail in --check mode
+# Run playbook
+ansible-playbook main.yml -i inventory -K -vvvv
 
-    ansible-playbook main.yml -i inventory -K --tags "dotfiles,homebrew"
+# Run tasks by tag
+ansible-playbook main.yml -i inventory -K --tags "dotfiles,homebrew"
+```
 
 ## Overriding Defaults
+Any variable can be overridden in `config.yml`. For example, you can customize the installed packages and apps with something like:
 
-Not everyone's development environment and preferred software configuration is the same.
+```yml
+homebrew_installed_packages:
+  - cowsay
+  - git
+  - go
+```
 
-You can override any of the defaults configured in `default.config.yml` by creating a `config.yml` file and setting the overrides in that file. For example, you can customize the installed packages and apps with something like:
+## Included applications and configuration
 
-    homebrew_installed_packages:
-      - cowsay
-      - git
-      - go
-
-Any variable can be overridden in `config.yml`; see the supporting roles' documentation for a complete list of available variables.
-
-## Included Applications / Configuration (Default)
-
-Applications (installed with Homebrew Cask):
-
+### Cask applications
   - [Docker](https://www.docker.com/)
   - [.NET SDK](https://dotnet.microsoft.com)
   - [Firefox](https://www.mozilla.org/en-US/firefox/new/)
@@ -93,37 +96,33 @@ Applications (installed with Homebrew Cask):
   - [Visual Studio Code](https://code.visualstudio.com)
   - [Visual Studio](https://visualstudio.microsoft.com)
 
-Packages (installed with Homebrew):
-
+### Packages
   - git
   - hub
   - cmake
   - node
   - neovim
   
-Dotfiles
-
+### Dotfiles
+[Dotfiles](https://github.com/bginbey/dotfiles) are installed into ~/dotfiles/ with symbolic links in the home directory. The .neovim-init is also linked to Neovim's default location ./config/nvim/init.vim You can disable dotfiles management by setting `configure_dotfiles: no` in your configuration.
 - .zshrc
 - .gitconfig
 - .hyper.js
 - .osx
+- .antigen
 - .neovim-init.vim
 
-My [dotfiles](https://github.com/bginbey/dotfiles) are installed into ~/dotfiles/ with symbolic links in the home directory. The .neovim-init is also linked to Neovim's default location ./config/nvim/init.vim You can disable dotfiles management by setting `configure_dotfiles: no` in your configuration.
+### Zsh with Antigen bundles
+- git
+- heroku
+- pip
+- lein
+- command-not-found
 
-Finally, there are a few other preferences and settings added on for various apps and services.
+## Future development
 
-## Future additions
-
-### Things that still need to be done manually
-
-
-### Applications/packages to be added:
   - [Figma](https://figma.com)
-
-### Configuration to be added:
 
 
 ## Testing the Playbook
-
-Many people have asked me if I often wipe my entire workstation and start from scratch just to test changes to the playbook. Nope! Instead, I posted instructions for how I build a [Mac OS X VirtualBox VM](https://github.com/geerlingguy/mac-osx-virtualbox-vm), on which I can continually run and re-run this playbook to test changes and make sure things work correctly.
+See instructions for how to build a [Mac OS X VirtualBox VM](https://github.com/geerlingguy/mac-osx-virtualbox-vm), on which playbooks may be run for testing.
