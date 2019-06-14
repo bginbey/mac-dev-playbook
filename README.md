@@ -11,11 +11,20 @@ This playbook installs and configures most of the software I use on my Mac for w
 sudo installer -pkg \
   /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
 ```
+
 #### Homebrew
 ```bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
-#### Python
+
+#### Python via brew (recommended for now due to [common build problems](https://github.com/pyenv/pyenv/wiki/common-build-problems) with pyenv)
+```bash
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
+brew install readline xz python
+pip3 install --user --upgrade pynvim
+```
+
+#### Python via pyenv ( Not recommended for now due to [common build problems in OS X 10.14 Mojave and other platforms](https://github.com/pyenv/pyenv/wiki/common-build-problems<Paste>))
 1. Install pyenv and pipenv with brew
 2. Add pyenv init to .bash_profile
 3. Run `export PYTHON_CONFIGURE_OPTS="--enable-framework"` to ensure python compiles correctly for use with cmake
