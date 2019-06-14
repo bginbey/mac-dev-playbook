@@ -6,7 +6,7 @@ neovim_plugin_directory: ~/.local/share/nvim/plugged
 # python2_version: 2.7.16
 # python3_version: 3.7.3
 # antigen_downloads: ~/.ansible-downloads
-antigen_destination_directory: ~/.ansible-downloads
+antigen_destination_directory: ~/.antigen
 
 configure_ansible: yes
 configure_dotfiles: yes
