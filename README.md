@@ -1,12 +1,16 @@
 # Mac Development Playbook
 
-This playbook installs and configures most of the software I use on my Mac for web and software development. Some things in macOS are slightly difficult to automate, so I still have some manual installation steps, but at least it's all documented here.
-#TODO: Consider forking gantsign/ansible_role_antigen
+This playbook installs and configures most of the software I use on my Mac for web and software development. There are still a few manual steps, documented here.
+
+## TODO: Get the dotfiles and antigen modules working together correctly
+- Ensure ~/dotfiles directory is updated even if present or removed and re-added
+- .antigenrc is being created and sourced in .zshrc
+- bundles are not being added to the bundles folder
 
 ## Installation:
 #### Command Line Tools
-1. Download and extract the Apple Command Line Tools pkg from [here](https://developer.apple.com/download/more/).
-2. Double click the pkg installer, then run the following commands to install the package and then the headers
+1. Download and extract the Apple Command Line Tools from [here](https://developer.apple.com/download/more/).
+2. Extract and run the pkg installer then run the following commands to install the package and then the headers
 ```bash
 sudo installer -pkg \
   /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
