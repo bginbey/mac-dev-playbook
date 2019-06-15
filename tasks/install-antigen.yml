@@ -10,4 +10,3 @@
     version: master
     dest: "{{ antigen_destination_directory }}"
     force: yes
-    update: yes
