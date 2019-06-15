@@ -10,7 +10,7 @@ antigen_destination_directory: ~/.antigen
 
 configure_ansible: yes
 configure_dotfiles: yes
-configure_osx: no
+configure_osx: yes
 
 dotfiles_repo: https://github.com/bginbey/dotfiles.git
 dotfiles_repo_local_destination: "~/dotfiles"
