@@ -124,6 +124,8 @@ homebrew_installed_packages:
 - command-not-found
 
 ## Future development
+- Visual Studio dotfile configuration
+- Visual Studio Code dotfile configuration
 - Adobe Creative Cloud
 
 
