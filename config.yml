@@ -40,6 +40,7 @@ homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - docker
   - dotnet-sdk
+  - figma
   - firefox
   - google-chrome
   - google-drive-file-stream

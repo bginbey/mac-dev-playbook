@@ -124,7 +124,7 @@ homebrew_installed_packages:
 - command-not-found
 
 ## Future development
-- [Figma](https://figma.com)
+- Adobe Creative Cloud
 
 
 ## Testing the Playbook
