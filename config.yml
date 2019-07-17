@@ -52,6 +52,6 @@ homebrew_cask_apps:
   - private-internet-access
   - shiftit
   - visual-studio-code
-  - visual-studio
+  # - visual-studio # Install manually as brew cask only installs .Net Core and skips optional packages such as Xamarin frameworks
 
 osx_script: "~/.osx --no-restart"
